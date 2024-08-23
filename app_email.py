@@ -16,7 +16,12 @@ def enviar_email_html(destinatario, assunto, arquivo_html):
                 msg['Subject'] = assunto
                 msg.attach(MIMEText(html, 'html'),)
 
-    try:         
+    try: 
+        """
+        caso o email for gmail só trocar smtp-mail.outlook.com', 587
+        pelos dados do gmail.
+        gmail terá que desativar vericação de duas etapas!
+        """     
         with smtplib.SMTP('smtp-mail.outlook.com', 587) as smtp: #587
                 smtp.starttls()
                 smtp.login(MY_EMAIL, MY_PASS)
